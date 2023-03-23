@@ -1,0 +1,28 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: ACCOUNT-SERVICE
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/account/**
+        - id: RESERVATION-SERVICE
+          uri: lb://RESERVATION-SERVICE
+          predicates:
+            - Path=/reservation/**
+        - id: RATE-SERVICE
+          uri: lb://RATE-SERVICE
+          predicates:
+            - Path=/rates/**
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
