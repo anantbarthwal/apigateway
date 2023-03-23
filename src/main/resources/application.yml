@@ -17,7 +17,7 @@ spring:
         - id: RATE-SERVICE
           uri: lb://RATE-SERVICE
           predicates:
-            - Path=/rates/**
+            - Path=/rates/**, /ratePlans/**, /roomTypes/**, /rooms/**
 eureka:
   instance:
     prefer-ip-address: true
